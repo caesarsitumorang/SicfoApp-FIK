@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "560703709592",
+    "firebase_url": "https://sociaclub-sicfo-default-rtdb.firebaseio.com",
+    "project_id": "sociaclub-sicfo",
+    "storage_bucket": "sociaclub-sicfo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560703709592:android:8410aff17670b25de78bed",
+        "android_client_info": {
+          "package_name": "com.rpl.sicfo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOq8c1Yd4GvIUOYoPfWgKVbF2m6BRNBIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
