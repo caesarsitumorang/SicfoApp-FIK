@@ -13,10 +13,10 @@
         android:theme="@style/Theme.Sicfo"
         tools:targetApi="31">
         <activity
-            android:name=".ui.berita.DetailBeritaKegiatan"
+            android:name=".ui.organisasiFikom.DetailOrganisasiFikomActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.berita.DetailBeritaOrganisasi"
+            android:name=".ui.berita.DetailBeritaKegiatan"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
