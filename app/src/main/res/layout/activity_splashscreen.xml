@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.splesscreen.splashscreen_activity">
 
     <FrameLayout
         android:id="@+id/sheet1"
@@ -70,6 +71,5 @@
         app:layout_constraintEnd_toEndOf="@+id/title_app"
         app:layout_constraintStart_toStartOf="@+id/title_app"
         app:layout_constraintTop_toBottomOf="@+id/title_app" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
