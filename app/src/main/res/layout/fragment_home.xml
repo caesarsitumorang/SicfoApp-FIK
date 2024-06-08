@@ -55,23 +55,24 @@
 
         <TextView
             android:id="@+id/tv_hello"
+            style="@style/textColorTitleUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="28dp"
             android:text="Hi,"
-            android:textColor="@color/white"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="@+id/view"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.029"
-            app:layout_constraintStart_toEndOf="@+id/view"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintHorizontal_bias="0.028"
+            app:layout_constraintStart_toEndOf="@+id/view" />
 
         <TextView
             android:id="@+id/tv_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
-            android:textColor="@color/white"
+            android:textSize="15sp"
+            style="@style/textColorTitleUsername"
             app:layout_constraintBottom_toBottomOf="@+id/tv_hello"
             app:layout_constraintStart_toEndOf="@+id/tv_hello"
             app:layout_constraintTop_toTopOf="@+id/tv_hello"
@@ -81,10 +82,10 @@
             android:id="@+id/tv_welcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="1dp"
             android:text="Welcome To"
-            android:textSize="15sp"
-            android:textColor="@color/white"
+            android:textSize="17sp"
+            style="@style/textColorTitleWelcome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tv_hello"
@@ -97,7 +98,7 @@
             android:layout_marginTop="12dp"
             android:text="SociaClub- FIK Organizer"
             android:textSize="23sp"
-            android:textStyle="bold"
+            style="@style/textColorTitleHome"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/img_profile"
@@ -107,7 +108,7 @@
             android:id="@+id/searchBar"
             android:layout_width="331dp"
             android:layout_height="48dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bg_search"
             android:hint="cari"
             android:textColorHint="@color/black"
@@ -116,9 +117,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_sociaclub" />
 
-        <!-- TextView untuk judul -->
-
-        <!-- ShimmerFrameLayout untuk tampilan kosong -->
         <TextView
             android:id="@+id/tv_berita_organisasi"
             android:layout_width="wrap_content"
@@ -126,7 +124,8 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="33dp"
             android:text="Berita Kegiatan"
-            android:textStyle="bold"
+            android:textSize="15sp"
+            style="@style/textColorTitleHome"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/searchBar" />
 
@@ -141,7 +140,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_berita_organisasi" />
 
-        <!-- RecyclerView untuk menampilkan data -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_berita_organisasi"
             android:layout_width="0dp"
@@ -157,7 +155,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="162dp"
             android:text="Organisasi Fikom"
-            android:textStyle="bold"
+            android:textSize="15sp"
+            style="@style/textColorTitleHome"
             app:layout_constraintStart_toStartOf="@+id/tv_berita_organisasi"
             app:layout_constraintTop_toBottomOf="@+id/empty_berita" />
 
@@ -176,13 +175,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="198dp"
             android:text="Klub Fikom"
-            android:textStyle="bold"
+            android:textSize="15sp"
+            style="@style/textColorTitleHome"
             app:layout_constraintStart_toStartOf="@+id/tv_organisasi_fikom"
             app:layout_constraintTop_toBottomOf="@+id/tv_organisasi_fikom" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_club"
-            android:layout_width="0dp"
+            android:id="@+id/rv_klub"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"

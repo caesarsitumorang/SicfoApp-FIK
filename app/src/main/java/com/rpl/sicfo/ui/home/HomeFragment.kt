@@ -1,5 +1,6 @@
 package com.rpl.sicfo.ui.home
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,30 +9,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.rpl.sicfo.R
 import com.rpl.sicfo.adapter.BeritaOrganisasiAdapter
+import com.rpl.sicfo.adapter.KlubFikomAdapter
 import com.rpl.sicfo.adapter.OrganisasiFikomAdapter
 import com.rpl.sicfo.data.Berita
+import com.rpl.sicfo.data.KlubFikom
 import com.rpl.sicfo.data.Organisasi
 import com.rpl.sicfo.databinding.FragmentHomeBinding
 import com.rpl.sicfo.ui.berita.DetailBeritaKegiatan
+import com.rpl.sicfo.ui.klubFikom.DetailKlubFikomActivity
 import com.rpl.sicfo.ui.organisasiFikom.DetailOrganisasiFikomActivity
+import java.util.Timer
+import java.util.TimerTask
 
-class HomeFragment : Fragment(), BeritaOrganisasiAdapter.OnItemClickListener, OrganisasiFikomAdapter.OnItemClickListener {
+class HomeFragment : Fragment(),
+    BeritaOrganisasiAdapter.OnItemClickListener,
+    OrganisasiFikomAdapter.OnItemClickListener,
+    KlubFikomAdapter.OnItemClickListener {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var database: DatabaseReference
     private lateinit var adapterberita: BeritaOrganisasiAdapter
     private lateinit var adapterorganisasi : OrganisasiFikomAdapter
+    private lateinit var adapterKlub : KlubFikomAdapter
     private val beritaList = mutableListOf<Berita>()
     private val organisasiList = mutableListOf<Organisasi>()
+    private val klubList = mutableListOf<KlubFikom>()
     private lateinit var auth: FirebaseAuth
+    private var timer: Timer? = null
 
     override fun onItemClick(berita: Berita) {
         val intent = Intent(requireContext(), DetailBeritaKegiatan::class.java).apply {
@@ -58,7 +71,15 @@ class HomeFragment : Fragment(), BeritaOrganisasiAdapter.OnItemClickListener, Or
             putExtra("detailTitle", organisasi.detailTitle)
         }
         startActivity(intent)
+    }
 
+    override fun onItemClick(klub: KlubFikom) {
+        val intent = Intent(requireContext(), DetailKlubFikomActivity::class.java).apply {
+            putExtra("title", klub.title)
+            putExtra("image", klub.image)
+            putExtra("image1", klub.image1)
+        }
+        startActivity(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,28 +91,80 @@ class HomeFragment : Fragment(), BeritaOrganisasiAdapter.OnItemClickListener, Or
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         setupRVBeritaKegiatan()
         setupRVOrganisasiFikom()
+        setupRVKlubFikom()
         fetchDataFromFirebase()
         fetchOrganisasiDataFromFirebase()
         fetchUserFullName()
+        fetchDataKlubFromFirebase()
         return binding.root
+    }
+
+    private fun setupRVKlubFikom() {
+        adapterKlub = KlubFikomAdapter(klubList, this)
+        val layoutManager = LinearLayoutManager(requireContext())
+        binding.rvKlub.layoutManager = layoutManager
+        binding.rvKlub.adapter = adapterKlub
+
     }
 
     private fun setupRVOrganisasiFikom() {
         adapterorganisasi = OrganisasiFikomAdapter(organisasiList, this)
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvOrganisasi.layoutManager = layoutManager
+        val layoutManagerOrganisasi = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvOrganisasi.layoutManager = layoutManagerOrganisasi
         binding.rvOrganisasi.adapter = adapterorganisasi
+
+//        setupSliderOrganisasi(layoutManagerOrganisasi)
     }
 
     private fun setupRVBeritaKegiatan() {
         adapterberita = BeritaOrganisasiAdapter(beritaList, this)
-        val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvBeritaOrganisasi.layoutManager = layoutManager
+        val layoutManagerBerita = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvBeritaOrganisasi.layoutManager = layoutManagerBerita
         binding.rvBeritaOrganisasi.adapter = adapterberita
+
+        setupSliderBerita(layoutManagerBerita)
+    }
+
+    private fun setupSliderBerita(layoutManagerBerita: LinearLayoutManager) {
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.rvBeritaOrganisasi)
+
+        timer = Timer()
+        timer?.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                val currentPosition = layoutManagerBerita.findLastCompletelyVisibleItemPosition()
+                Log.d(TAG, "posisi sekarang: $currentPosition , jumlah data: ${adapterberita.itemCount}")
+
+                if (currentPosition < (adapterberita.itemCount - 1)) {
+                    layoutManagerBerita.smoothScrollToPosition(binding.rvBeritaOrganisasi, RecyclerView.State(), currentPosition + 1)
+                } else {
+                    layoutManagerBerita.smoothScrollToPosition(binding.rvBeritaOrganisasi, RecyclerView.State(), 0)
+                }
+            }
+        }, 0, 3000)
+    }
+
+    private fun setupSliderOrganisasi(layoutManagerOrganisasi: LinearLayoutManager) {
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.rvOrganisasi)
+
+        timer = Timer()
+        timer?.scheduleAtFixedRate(object : TimerTask() {
+            override fun run() {
+                val currentPosition = layoutManagerOrganisasi.findLastCompletelyVisibleItemPosition()
+                Log.d(TAG, "posisi sekarang: $currentPosition , jumlah data: ${adapterorganisasi.itemCount}")
+
+                if (currentPosition < (adapterorganisasi.itemCount - 1)) {
+                    layoutManagerOrganisasi.smoothScrollToPosition(binding.rvOrganisasi, RecyclerView.State(), currentPosition + 1)
+                } else {
+                    layoutManagerOrganisasi.smoothScrollToPosition(binding.rvOrganisasi, RecyclerView.State(), 0)
+                }
+            }
+        }, 0, 3000)
     }
 
     private fun fetchDataFromFirebase() {
@@ -109,6 +182,28 @@ class HomeFragment : Fragment(), BeritaOrganisasiAdapter.OnItemClickListener, Or
                     }
                 }
                 adapterberita.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle database error
+            }
+        })
+    }
+
+    private fun fetchDataKlubFromFirebase() {
+        database.child("KlubFikom").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                klubList.clear()
+                for (dataSnapshot in snapshot.children) {
+                    val title = dataSnapshot.child("title").getValue(String::class.java)
+                    val imageUrl = dataSnapshot.child("image").getValue(String::class.java)
+                    val image1 = dataSnapshot.child("image1").getValue(String::class.java)
+                    if (title != null && imageUrl != null && image1 != null ) {
+                        val klub = KlubFikom(title, imageUrl,image1)
+                        klubList.add(klub)
+                    }
+                }
+                adapterKlub.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -160,7 +255,6 @@ class HomeFragment : Fragment(), BeritaOrganisasiAdapter.OnItemClickListener, Or
             }
         })
     }
-
 
     private fun fetchUserFullName() {
         val user = auth.currentUser
