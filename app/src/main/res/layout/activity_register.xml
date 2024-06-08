@@ -96,7 +96,7 @@
         app:layout_constraintTop_toTopOf="@+id/bg_edit_text" />
 
     <com.rpl.sicfo.ui.coustumview.EditTextEmail
-        android:id="@+id/ednama_register"
+        android:id="@+id/edemail_register"
         android:layout_width="299dp"
         android:layout_height="55dp"
         android:layout_marginHorizontal="16dp"
@@ -111,7 +111,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_title_register" />
 
     <com.rpl.sicfo.ui.coustumview.EditText
-        android:id="@+id/edemail_register"
+        android:id="@+id/ednama_register"
         android:layout_width="299dp"
         android:layout_height="55dp"
         android:layout_marginHorizontal="16dp"
@@ -123,7 +123,7 @@
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="@+id/bg_edit_text"
         app:layout_constraintStart_toStartOf="@+id/bg_edit_text"
-        app:layout_constraintTop_toBottomOf="@+id/ednama_register" />
+        app:layout_constraintTop_toBottomOf="@+id/edemail_register" />
 
 
     <com.rpl.sicfo.ui.coustumview.EditText
@@ -139,7 +139,7 @@
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="@+id/bg_edit_text"
         app:layout_constraintStart_toStartOf="@+id/bg_edit_text"
-        app:layout_constraintTop_toBottomOf="@+id/edemail_register" />
+        app:layout_constraintTop_toBottomOf="@+id/ednama_register" />
 
     <com.rpl.sicfo.ui.coustumview.EditText
         android:id="@+id/edpassword_register"
