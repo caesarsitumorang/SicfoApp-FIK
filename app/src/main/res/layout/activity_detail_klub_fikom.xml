@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.organisasiFikom.DetailOrganisasiFikomActivity">
+    tools:context=".ui.klubFikom.DetailKlubFikomActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,7 +12,7 @@
 
         <View
             android:layout_width="425dp"
-            android:layout_height="119dp"
+            android:layout_height="99dp"
             android:background="@drawable/bg_detail_organisasi"
             app:layout_constraintBottom_toTopOf="@+id/tv_Profil_lengkap"
             app:layout_constraintTop_toTopOf="parent"
@@ -22,54 +22,52 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_logo"
-            android:layout_width="106dp"
-            android:layout_height="83dp"
+            android:layout_width="88dp"
+            android:layout_height="74dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.009"
+            app:layout_constraintHorizontal_bias="0.043"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.014" />
+            app:layout_constraintVertical_bias="0.015" />
 
         <TextView
-            android:id="@+id/tv_title_organisasi"
+            android:id="@+id/tv_title_klub"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:ellipsize="end"
             android:inputType="textMultiLine"
             android:maxLines="2"
             android:text="lohoan"
-            android:textSize="20sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/img_logo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/img_logo"
             app:layout_constraintTop_toTopOf="@+id/img_logo"
-            app:layout_constraintVertical_bias="0.25" />
+            app:layout_constraintVertical_bias="0.339" />
 
         <TextView
             android:id="@+id/tv_fakultas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="loho"
-            app:layout_constraintEnd_toEndOf="@+id/tv_title_organisasi"
+            app:layout_constraintEnd_toEndOf="@+id/tv_title_klub"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/tv_title_organisasi"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title_organisasi" />
+            app:layout_constraintStart_toStartOf="@+id/tv_title_klub"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_klub" />
 
         <ImageView
             android:id="@+id/img_detail1"
             android:layout_width="450dp"
             android:layout_height="305dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_logo" />
-
 
         <TextView
             android:id="@+id/tv_profil"
@@ -116,35 +114,13 @@
             app:layout_constraintStart_toStartOf="@+id/tv_Profil_lengkap"
             app:layout_constraintTop_toTopOf="@+id/tv_visi_misi" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="159dp"
-            android:layout_height="27dp"
-            android:text="Struktural BEM FIKOM"
-            android:textStyle="bold"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_detail_misi" />
-
-        <ImageView
-            android:id="@+id/img_struktural_bem"
-            android:layout_width="390dp"
-            android:layout_height="281dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.421"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
-
         <View
             android:id="@+id/View_daftar"
             android:layout_width="397dp"
             android:layout_height="71dp"
-            android:layout_marginTop="28dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_struktural_bem" />
+            app:layout_constraintTop_toBottomOf="@+id/img_detail_misi" />
 
 
         <Button
@@ -184,4 +160,5 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.core.widget.NestedScrollView>

@@ -15,14 +15,17 @@
             android:layout_height="120dp"
             android:scaleType="centerCrop"
             android:src="@color/orange" />
+        
+
     </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_title_organisasi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="15sp"
+        style="@style/textColorTitleOrganisasi"
         android:layout_below="@id/rl_item_organisasi"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="8dp"
-        android:text="loho" />
+        android:layout_marginTop="8dp" />
 </RelativeLayout>
